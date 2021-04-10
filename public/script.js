@@ -13,7 +13,7 @@ let myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
     video: true,
-    audio: false,
+    audio: true,
   })
   .then((stream) => {
     myVideoStream = stream;
@@ -76,7 +76,8 @@ const scrollToBottom = () => {
 
 // Mute our audio
 const muteUnmute = () => {
-  const enabled = myVideostream.getAudioTracks()[0].enabled;
+  console.log(myVideoStream);
+  const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
     setUnmuteButton();
@@ -97,7 +98,7 @@ const setMuteButton = () => {
 
 const setUnmuteButton = () => {
   const html = `
-  <i class="fas fa-microphone-slash"></i>
+  <i class="unmute fas fa-microphone-slash"></i>
   <span>Unmute</span>
   `;
 
